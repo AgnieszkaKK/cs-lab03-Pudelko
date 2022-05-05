@@ -29,9 +29,9 @@ namespace PudelkoUnitTests
 
         private void AssertPudelko(Pudelko p, double expectedA, double expectedB, double expectedC)
         {
-           // Assert.AreEqual(expectedA, p.A, delta: accuracy);
-           // Assert.AreEqual(expectedB, p.B, delta: accuracy);
-           // Assert.AreEqual(expectedC, p.C, delta: accuracy);
+            Assert.AreEqual(expectedA, p.A, delta: accuracy);
+            Assert.AreEqual(expectedB, p.B, delta: accuracy);
+            Assert.AreEqual(expectedC, p.C, delta: accuracy);
         }
 
         #region Constructor tests ================================
@@ -453,6 +453,22 @@ namespace PudelkoUnitTests
 
         #region Equals ===========================================
         // ToDo
+        [DataTestMethod, TestCategory("Equals")]
+        [DataRow(1.0, 2.543, 3.1,
+                1.0, 3.1, 2.543,
+            true)]
+        [DataRow(1.0001, 2.54387, 4.1005,
+                1.0, 2.543, 3.1,
+            false)] 
+        public void Equals_3params_simplecase(double a, double b, double c,
+                                                     double a2, double b2, double c2, bool eq)
+        {
+            Pudelko p = new Pudelko(a, b, c);
+            Pudelko p2 = new Pudelko(a2, b2, c2);
+            Assert.AreEqual(eq, p.Equals(p2));
+          //  Assert.AreEqual(eq, p==p2);
+            //Assert.AreEqual(!eq, p!=p2);
+        }
         #endregion
 
         #region Operators overloading ===========================
@@ -460,8 +476,8 @@ namespace PudelkoUnitTests
         #endregion
 
         #region Conversions =====================================
-      /*  [TestMethod]
-        public void ExplicitConversion_ToDoubleArray_AsMeters()
+        /*  [TestMethod]
+          public void ExplicitConversion_ToDoubleArray_AsMeters()
         {
             var p = new Pudelko(1, 2.1, 3.231);
             double[] tab = (double[])p;
@@ -471,7 +487,7 @@ namespace PudelkoUnitTests
             Assert.AreEqual(p.C, tab[2]);
         }
 
-        [TestMethod]
+      [TestMethod]
         public void ImplicitConversion_FromAalueTuple_As_Pudelko_InMilimeters()
         {
             var (a, b, c) = (2500, 9321, 100); // in milimeters, ValueTuple
@@ -511,6 +527,6 @@ namespace PudelkoUnitTests
         #region Parsing =========================================
 
         #endregion
-      
+
     }
 }
