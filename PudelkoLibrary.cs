@@ -11,23 +11,7 @@ namespace PudelkoLibrary
         private UnitOfMeasure unit;
 
         public double A => calculate_To_Scale(UnitOfMeasure.meter, a);
-        /* public double A
-          { 
-              get{ return calculate_To_Scale(a);}
-              
-
-          public double B
-          { 
-              get{ return b;}
-             } 
-              
-        public double C
-        { 
-            get{ return c;}
-            
-            }
-
-         */
+        
 
         public double B => calculate_To_Scale(UnitOfMeasure.meter, b);
         public double C => calculate_To_Scale(UnitOfMeasure.meter, c);
@@ -104,21 +88,7 @@ namespace PudelkoLibrary
         {
             return calculate_To_Scale(this.unit, value);
         }
-        /*private string getScale()
-        {
-            if (meter)
-            {
-                return "m";
-            }
-            else if(centimeter)
-        {
-         return "cm";
-        }
-        else
-        {
-            "mm";
-        }
-        }*/
+        
         public override string ToString()
         {
            return this.ToString("m");

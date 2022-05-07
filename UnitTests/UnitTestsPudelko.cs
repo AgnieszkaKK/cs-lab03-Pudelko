@@ -447,12 +447,43 @@ namespace PudelkoUnitTests
 
 
         #region Pole, Objętość ===================================
-        // ToDo
+        
+        [DataTestMethod, TestCategory("Objętość")]
+        [DataRow(1.00005, 2.543, 3.165485210, 8.048595)]
+        [DataRow(1.0001, 2.54387, 4.1005, 10.4263)]
+        [DataRow(5.2525254789, 10, 4.35, 228.462)]
+        public void Obj_3params(double a, double b, double c, double o)
+        {
+            Pudelko p = new Pudelko(a, b, c);
+            double o2 = p.Objetosc;
+            Assert.AreEqual(o, o2);  
+        }
 
+        [DataTestMethod, TestCategory("Pole")]
+        [DataRow(1.00005, 2.543, 3.165485210, 27.51319)]
+        [DataRow(1.0001, 2.54387, 4.1005, 34.1386)]
+        [DataRow(5.2525254789, 10, 4.35, 237.7324)]
+        public void Pole_3params(double a, double b, double c, double sq)
+        {
+            Pudelko p = new Pudelko(a, b, c);
+            double sq2 = p.Pole;
+            Assert.AreEqual(sq, sq2);
+        }
+
+        [DataTestMethod, TestCategory("Pole_cm")]
+        [DataRow(100.005, 254.3, 316.5485210, 27.51319)]
+        [DataRow(100.01, 254.387, 410.05, 34.1386)]
+        [DataRow(525.25254789, 1000, 435, 237.7324)]
+        public void Pole_3params_cm(double a, double b, double c, double sq)
+        {
+            Pudelko p = new Pudelko(a, b, c,UnitOfMeasure.centimeter);
+            double sq2 = p.Pole;
+            Assert.AreEqual(sq, sq2);
+        }
         #endregion
 
         #region Equals ===========================================
-        // ToDo
+
         [DataTestMethod, TestCategory("Equals")]
         [DataRow(1.0, 2.543, 3.1,
                 1.0, 3.1, 2.543,
